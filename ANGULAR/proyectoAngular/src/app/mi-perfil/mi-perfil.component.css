@@ -1,0 +1,34 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    border-color: black;
+    display: flex;
+    min-height: 55vh;
+}
+.profile-table {
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 20px;
+    overflow: hidden;
+    color: black;
+    background-color: rgb(255, 255, 255);
+
+}
+.profile-table table {
+    width: 100%;
+}
+
+.btn-outline-primary{
+    position: absolute;
+    padding: 0px 30px;
+    left: 175px;
+    margin-top: 46px;
+ }
+ .btn-warning{
+    position: absolute;
+    padding: 0px 30px;
+    left: 30px;
+    margin-top: 70px;
+ }
+

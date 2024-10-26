@@ -1,0 +1,37 @@
+<div class="container">
+  <h1>ROLES</h1>
+  <hr>
+
+  <button class="btn btn-warning" (click)="limpiarFormulario()">Limpiar formulario</button>
+  <form (ngSubmit)="guardarLugar()" id="guardarLugarForm">
+
+    <div class="mb-3">
+      <label class="form-label">Nombre: *</label>
+      <input type="text" class="form-control" [(ngModel)]="lugar.name"
+             [ngModelOptions]="{standalone:true}" placeholder="Nombre" required>
+    </div>
+
+    <input type="submit" class="btn btn-outline-primary float-end" value="Guardar">
+  </form>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Acciones</th>
+        <th scope="col">Nombre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let lugar of lugares">
+        <th scope="row">{{lugar.roleId}}</th>
+        <td>
+          <button class="btn btn-warning" (click)="modificar(lugar)">Modificar</button>
+          &nbsp;
+          <button class="btn btn-danger" (click)="eliminar(lugar)">Eliminar</button>
+        </td>
+        <td>{{lugar.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

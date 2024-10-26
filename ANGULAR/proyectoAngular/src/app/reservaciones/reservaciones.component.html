@@ -1,0 +1,28 @@
+<div class="container">
+    <h1>Consulta Reservaciones:</h1>
+    <hr>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Pasajeros</th>
+            <th scope="col">Observaciones</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Viaje</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reserva of reservacion">
+            <td>{{reserva.idreservacion}}</td>
+            <td>{{reserva.cantidadPasajeros}}</td>
+            <td>{{reserva.observaciones}}</td>
+            <td>{{reserva.correo}}</td>
+            <td>{{reserva.idestado | estados: estado}}</td>
+            <td>{{reserva.idviaje  | viajes: viajes}}</td>
+          </tr>
+        </tbody>
+      </table>
+<div>
+</div>
+</div>

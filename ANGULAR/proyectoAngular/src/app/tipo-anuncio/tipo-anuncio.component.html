@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+      <h1>Tipo anuncios</h1>
+      <hr>
+
+      <button class="btn btn-warning" (click)="limpiarFormulario()">Limpiar formulario</button>
+      <form (ngSubmit)="guardarTipoAnuncio()" id="guardarTipoAnuncioForm">
+  
+        <!-- <div class="mb-3">
+          <label class="form-label">IDTipoAnuncio: *</label>
+          <input type="text" class="form-control" [(ngModel)]="tipoAnuncio.idtipoAnuncio"
+            [ngModelOptions]="{standalone:true}" placeholder="ID" required>
+        </div> -->
+        <div class="mb-3">
+            <label class="form-label">Descripcion: *</label>
+            <input type="text" class="form-control" [(ngModel)]="tipoAnuncio.descripcion"
+              [ngModelOptions]="{standalone:true}" placeholder="ID" required>
+          </div>
+  
+        <div class="mb-3">
+          <label class="form-label">Imagen: *</label>
+          <input type="file" (change)="onImageChange($event)" accept="image/*">
+          <img [src]="tipoAnuncio.imagen" *ngIf="tipoAnuncio.imagen" class="img-thumbnail" width="100">
+        </div>
+  
+        <input type="submit" class="btn btn-outline-primary float-end" value="Guardar">
+      </form>
+  
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Acciones</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Imagen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tipoAnuncio of tipoAnuncios">
+            <th scope="row">{{tipoAnuncio.idtipoAnuncio}}</th>
+            <td>
+              <button class="btn btn-warning" (click)="modificar(tipoAnuncio)">Modificar</button>
+              &nbsp;
+            </td>
+            <td>{{tipoAnuncio.descripcion}}</td>
+            <td><img [src]="tipoAnuncio.imagen" class="img-thumbnail" width="100"></td>
+        
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

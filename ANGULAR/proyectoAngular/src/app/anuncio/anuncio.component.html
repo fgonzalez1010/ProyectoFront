@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <h1>Productos</h1>
+    <hr>
+
+    <!-- Tabla para mostrar los productos -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Precio</th>
+          <th scope="col">SKU</th>
+          <th scope="col">Especificaciones</th>
+          <th scope="col">Imagen</th>
+          <th scope="col">Categoría</th> <!-- Nueva columna para categoría -->
+          <th scope="col">Línea</th> <!-- Nueva columna para línea -->
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let anuncio of anuncios">
+          <th scope="row">{{ anuncio.productId }}</th>
+          <td>{{ anuncio.name }}</td>
+          <td>{{ anuncio.price | currency }}</td>
+          <td>{{ anuncio.sku }}</td>
+          <td>{{ anuncio.specs }}</td>
+          <td><img [src]="anuncio.urlImage" class="img-thumbnail" width="100"></td>
+          <td>{{ anuncio.productCategory.name }}</td> <!-- Muestra la categoría -->
+          <td>{{ anuncio.productLine.name }}</td> <!-- Muestra la línea -->
+          <td>
+            <button class="btn btn-primary">Comprar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

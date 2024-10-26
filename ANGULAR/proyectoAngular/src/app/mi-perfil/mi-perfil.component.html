@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil</title>
+</head>
+<body>
+    <div class="profile-table">
+        <table>
+            <tr>
+            <td><strong>Correo:</strong></td>
+            <td>{{usuarioSesion.usuario}}</td>
+            </tr>
+            <tr>
+            <td><strong>Password:</strong></td>
+            <td>{{usuarioSesion.password}}</td>
+            </tr>
+            <tr>
+            <td><strong>Nombre:</strong></td>
+            <td>{{usuarioSesion.nombre}}</td>
+            </tr>
+            <tr>
+            <td><strong>Universidad:</strong></td>
+            <td>{{usuarioSesion.universidad}}</td>
+            </tr>
+            <tr>
+            <td><strong>Carnet:</strong></td>
+            <td>{{usuarioSesion.carnet}}</td>
+            </tr>
+            <tr>
+            <td><strong>Curso:</strong></td>
+            <td>{{usuarioSesion.curso}}</td>
+            </tr>
+        </table>
+        <hr>
+        <tr *ngFor="let contra of passwords">
+            <button class="btn btn-warning" (click) ="modificar(usuarioSesion)">Modificar</button>
+              &nbsp;
+        </tr>
+        <form (ngSubmit)="guardarAdmin()" id="guardarPassword">
+
+            <tr>
+                <td>Password:</td>
+                <td><input type="texto" [(ngModel)]="pass.password"
+                [ngModelOptions]="{standalone:true}"
+                placeholder="Password"
+                required></td>
+                <input type="submit" value="Guardar" class="btn btn-outline-primary">
+            </tr>
+        </form>
+    </div>
+</body>
+</html>

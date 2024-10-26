@@ -1,0 +1,70 @@
+<div class="container">
+  <h1>Usuarios</h1>
+
+  <form (ngSubmit)="guardarUsuario()">
+    <div class="mb-3">
+      <label class="form-label">Nombre: *</label>
+      <input type="text" class="form-control" [(ngModel)]="nuevoUsuario.name" name="name" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Apellido: *</label>
+      <input type="text" class="form-control" [(ngModel)]="nuevoUsuario.lastName" name="lastName" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Usuario: *</label>
+      <input type="text" class="form-control" [(ngModel)]="nuevoUsuario.username" name="username" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email: *</label>
+      <input type="email" class="form-control" [(ngModel)]="nuevoUsuario.email" name="email" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Contraseña: *</label>
+      <input type="password" class="form-control" [(ngModel)]="nuevoUsuario.password" name="password" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Activo: *</label>
+      <select class="form-select" [(ngModel)]="nuevoUsuario.active" name="active" required>
+        <option value="true">Sí</option>
+        <option value="false">No</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary">Guardar Usuario</button>
+  </form>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Usuario</th>
+        <th scope="col">Email</th>
+        <th scope="col">Activo</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{usuario.userId}}</td>
+        <td>{{usuario.name}}</td>
+        <td>{{usuario.lastName}}</td>
+        <td>{{usuario.username}}</td>
+        <td>{{usuario.email}}</td>
+        <td>{{usuario.active}}</td>
+        <td>
+          <button class="btn btn-danger" (click)="eliminarUsuario(usuario.userId)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Botón para redirigir a la vista de lugar -->
+  <button class="btn btn-secondary" routerLink="/lugar">Roles</button>
+</div>
