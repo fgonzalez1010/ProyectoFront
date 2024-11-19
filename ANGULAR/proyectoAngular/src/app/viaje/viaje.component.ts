@@ -8,18 +8,18 @@ import { Observable } from "rxjs";
   styleUrls: ['./viaje.component.css']
 })
 export class ViajeComponent {
-  usuarios: any = []; // Para almacenar usuarios
-  nuevoUsuario: any = {}; // Para crear un nuevo usuario
-  roles: any = []; // Para almacenar roles
-  sucursales: any = []; // Para almacenar sucursales
+  usuarios: any = [];
+  nuevoUsuario: any = {};
+  roles: any = [];
+  sucursales: any = [];
 
   constructor(private http: HttpClient) {
-    this.buscarUsuarios(); // Llamada inicial para obtener usuarios
-    this.buscarRoles(); // Llamada inicial para obtener roles
-    this.buscarSucursales(); // Llamada inicial para obtener sucursales
+    this.buscarUsuarios();
+    this.buscarRoles();
+    this.buscarSucursales();
   }
 
-  // Obtener todos los usuarios
+
   buscarUsuarios() {
     this.servicioBuscarUsuarios().subscribe(
       (us: any) => this.usuarios = us
@@ -30,7 +30,7 @@ export class ViajeComponent {
     return this.http.get("http://localhost:8080/user");
   }
 
-  // Obtener todos los roles
+
   buscarRoles() {
     this.servicioBuscarRoles().subscribe(
       (rs: any) => this.roles = rs
@@ -38,10 +38,9 @@ export class ViajeComponent {
   }
 
   servicioBuscarRoles(): Observable<any> {
-    return this.http.get("http://localhost:8080/role"); // Cambia la URL según tu backend
+    return this.http.get("http://localhost:8080/role");
   }
 
-  // Obtener todas las sucursales
   buscarSucursales() {
     this.servicioBuscarSucursales().subscribe(
       (ss: any) => this.sucursales = ss
@@ -49,10 +48,10 @@ export class ViajeComponent {
   }
 
   servicioBuscarSucursales(): Observable<any> {
-    return this.http.get("http://localhost:8080/branch"); // Cambia la URL según tu backend
+    return this.http.get("http://localhost:8080/branch");
   }
 
-  // Crear un nuevo usuario
+
   guardarUsuario() {
     let httpOptions = {
       headers: new HttpHeaders({
@@ -61,19 +60,19 @@ export class ViajeComponent {
     };
     this.http.post<any>("http://localhost:8080/user", this.nuevoUsuario, httpOptions).subscribe(
       () => {
-        this.buscarUsuarios(); // Actualizar la lista de usuarios después de crear uno nuevo
-        this.limpiarFormulario(); // Limpiar el formulario
+        this.buscarUsuarios();
+        this.limpiarFormulario();
       }
     );
   }
 
   limpiarFormulario() {
-    this.nuevoUsuario = {}; // Restablecer el formulario
+    this.nuevoUsuario = {};
   }
 
   eliminarUsuario(id: number) {
     this.http.delete<any>(`http://localhost:8080/user/${id}`).subscribe(
-      () => this.buscarUsuarios() // Actualizar la lista de usuarios después de eliminar
+      () => this.buscarUsuarios()
     );
   }
 }

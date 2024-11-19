@@ -30,10 +30,9 @@ export class LoginComponent {
     if (response && response.status === "success") {
       const role = response.role;
 
-      // Almacenar el usuario en localStorage si deseas persistir información
       localStorage.setItem("usuario", JSON.stringify(response));
 
-      // Redirigir según el rol
+
       if (role === "User") {
         location.href = "/anuncio";
       } else if (role === "Admin") {

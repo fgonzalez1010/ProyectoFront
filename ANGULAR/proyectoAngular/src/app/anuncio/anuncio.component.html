@@ -3,7 +3,7 @@
     <h1>Productos</h1>
     <hr>
 
-    <!-- Tabla para mostrar los productos -->
+
     <table class="table">
       <thead>
         <tr>
@@ -13,8 +13,8 @@
           <th scope="col">SKU</th>
           <th scope="col">Especificaciones</th>
           <th scope="col">Imagen</th>
-          <th scope="col">Categoría</th> <!-- Nueva columna para categoría -->
-          <th scope="col">Línea</th> <!-- Nueva columna para línea -->
+          <th scope="col">Categoría</th>
+          <th scope="col">Línea</th>
           <th scope="col">Acciones</th>
         </tr>
       </thead>
@@ -26,8 +26,8 @@
           <td>{{ anuncio.sku }}</td>
           <td>{{ anuncio.specs }}</td>
           <td><img [src]="anuncio.urlImage" class="img-thumbnail" width="100"></td>
-          <td>{{ anuncio.productCategory.name }}</td> <!-- Muestra la categoría -->
-          <td>{{ anuncio.productLine.name }}</td> <!-- Muestra la línea -->
+          <td>{{ anuncio.productCategory.name }}</td>
+          <td>{{ anuncio.productLine.name }}</td>
           <td>
             <button class="btn btn-primary">Comprar</button>
           </td>

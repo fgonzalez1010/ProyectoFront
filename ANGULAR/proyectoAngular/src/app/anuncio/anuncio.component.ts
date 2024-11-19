@@ -22,7 +22,7 @@ export class AnuncioComponent {
   }
 
   servicioBuscarAnuncio(): Observable<any> {
-    return this.http.get("http://localhost:8080/product"); // Cambia el endpoint a "product"
+    return this.http.get("http://localhost:8080/product");
   }
 
   guardarLugar() {
@@ -40,7 +40,7 @@ export class AnuncioComponent {
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post<any>("http://localhost:8080/product", this.anuncio, httpOptions); // Cambia el endpoint a "product"
+    return this.http.post<any>("http://localhost:8080/product", this.anuncio, httpOptions);
   }
 
   onImageChange(event: any) {
@@ -74,6 +74,6 @@ export class AnuncioComponent {
   }
 
   servicioEliminarLugar(u: any): Observable<any> {
-    return this.http.delete<any>("http://localhost:8080/product/" + u.productId); // Cambia el endpoint a "product" y el ID a "productId"
+    return this.http.delete<any>("http://localhost:8080/product/" + u.productId);
   }
 }
