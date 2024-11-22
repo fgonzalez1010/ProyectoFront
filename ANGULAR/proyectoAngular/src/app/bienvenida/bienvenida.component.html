@@ -1,37 +1,61 @@
 <style>
-    /* Estilo para el título "Bienvenido" */
-    p {
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
+  /* Aseguramos que el body ocupe toda la pantalla */
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex; /* Flexbox para centrar */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    background-color: #e3f2fd; /* Fondo suave */
+  }
 
-    /* Estilo para los botones */
-    form {
-      text-align: center;
-    }
+  /* Contenedor principal */
+  .menu-container {
+    background-color: #ffffff; /* Fondo blanco */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+  }
 
-    button {
-      background-color: #d99f00; /* Color de fondo azul */
-      color: #fff; /* Color del texto blanco */
-      border: none; /* Sin bordes */
-      padding: 10px 20px; /* Espaciado interno para el botón */
-      margin: 5px; /* Margen entre los botones */
-      font-size: 16px; /* Tamaño de fuente */
-      border-radius: 5px; /* Bordes redondeados */
-      cursor: pointer; /* Cambia el cursor al pasar el ratón */
-    }
+  /* Título */
+  .menu-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
 
-    button:hover {
-      background-color: #ecd075;
-    }
-  </style>
+  /* Botones */
+  .menu-container button {
+    background-color: #007bff; /* Azul */
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
 
-  <p>Bienvenido</p>
+  .menu-container button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+</style>
+
+<div class="menu-container">
+  <h1>Bienvenido</h1>
   <form (ngSubmit)="Anuncio()">
-    <button>Anuncios</button>
+    <button type="submit">Anuncios</button>
   </form>
   <form (ngSubmit)="Viaje()">
-    <button>Viaje</button>
+    <button type="submit">Viaje</button>
   </form>
+</div>

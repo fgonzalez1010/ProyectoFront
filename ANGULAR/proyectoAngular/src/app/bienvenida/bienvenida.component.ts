@@ -14,10 +14,13 @@ export class BienvenidaComponent {
   }
 
   Anuncio() {
-    this.navigateTo('anuncio');
+    this.navigateTo('tipo-anuncio');
   }
 
   Viaje() {
     this.navigateTo('viaje');
+  }
+  Usuarios() {
+    this.navigateTo('usuarios');
   }
 }

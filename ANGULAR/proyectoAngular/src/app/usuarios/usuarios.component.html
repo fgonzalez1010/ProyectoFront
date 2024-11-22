@@ -1,27 +1,22 @@
 <div class="container">
-    <h1>Usuarios:</h1>
-    <hr>
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Correo</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Password</th>
-            <th scope="col">Telefono</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let usuario of usuarios">
-            <td>{{usuario.correo}}</td>
-            <td>{{usuario.nombre}}</td>
-            <td>{{usuario.apellido}}</td>
-            <td>{{usuario.password}}</td>
-            <td>{{usuario.telefono}}</td>
-          </tr>
-
-        </tbody>
-      </table>
-<div>
-</div>
+  <h1>Clientes:</h1>
+  <hr>
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Correo</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">NIT</th>
+          <th scope="col">Dirección</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{usuario.email}}</td>
+          <td>{{usuario.name}}</td>
+          <td>{{usuario.nit}}</td>
+          <td>{{usuario.address}}</td>
+        </tr>
+      </tbody>
+  </table>
 </div>

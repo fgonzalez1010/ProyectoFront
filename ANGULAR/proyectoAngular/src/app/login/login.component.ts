@@ -36,7 +36,7 @@ export class LoginComponent {
       if (role === "User") {
         location.href = "/anuncio";
       } else if (role === "Admin") {
-        location.href = "/viaje";
+        location.href = "/bienvenida";
       }
     } else {
       alert(response?.message || "Usuario o contraseña inválidos.");

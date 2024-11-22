@@ -1,53 +1,99 @@
 <div class="container">
-    <div class="row">
-      <h1>Tipo anuncios</h1>
-      <hr>
+  <h1>Gestión de Anuncios</h1>
 
-      <button class="btn btn-warning" (click)="limpiarFormulario()">Limpiar formulario</button>
-      <form (ngSubmit)="guardarTipoAnuncio()" id="guardarTipoAnuncioForm">
-  
-        <!-- <div class="mb-3">
-          <label class="form-label">IDTipoAnuncio: *</label>
-          <input type="text" class="form-control" [(ngModel)]="tipoAnuncio.idtipoAnuncio"
-            [ngModelOptions]="{standalone:true}" placeholder="ID" required>
-        </div> -->
-        <div class="mb-3">
-            <label class="form-label">Descripcion: *</label>
-            <input type="text" class="form-control" [(ngModel)]="tipoAnuncio.descripcion"
-              [ngModelOptions]="{standalone:true}" placeholder="ID" required>
-          </div>
-  
-        <div class="mb-3">
-          <label class="form-label">Imagen: *</label>
-          <input type="file" (change)="onImageChange($event)" accept="image/*">
-          <img [src]="tipoAnuncio.imagen" *ngIf="tipoAnuncio.imagen" class="img-thumbnail" width="100">
-        </div>
-  
-        <input type="submit" class="btn btn-outline-primary float-end" value="Guardar">
-      </form>
-  
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Acciones</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Imagen</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let tipoAnuncio of tipoAnuncios">
-            <th scope="row">{{tipoAnuncio.idtipoAnuncio}}</th>
-            <td>
-              <button class="btn btn-warning" (click)="modificar(tipoAnuncio)">Modificar</button>
-              &nbsp;
-            </td>
-            <td>{{tipoAnuncio.descripcion}}</td>
-            <td><img [src]="tipoAnuncio.imagen" class="img-thumbnail" width="100"></td>
-        
-          </tr>
-        </tbody>
-      </table>
+  <!-- Formulario para guardar o modificar un anuncio -->
+  <form id="guardarLugarForm" (submit)="guardarLugar()" novalidate>
+    <div class="form-group">
+      <label for="name">Nombre:</label>
+      <input
+        type="text"
+        id="name"
+        [(ngModel)]="anuncio.name"
+        name="name"
+        class="form-control"
+        required
+      />
     </div>
-  </div>
-  
+
+    <div class="form-group">
+      <label for="price">Precio:</label>
+      <input
+        type="number"
+        id="price"
+        [(ngModel)]="anuncio.price"
+        name="price"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="sku">SKU:</label>
+      <input
+        type="text"
+        id="sku"
+        [(ngModel)]="anuncio.sku"
+        name="sku"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="specs">Especificaciones:</label>
+      <textarea
+        id="specs"
+        [(ngModel)]="anuncio.specs"
+        name="specs"
+        class="form-control"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="image">Imagen:</label>
+      <input
+        type="file"
+        id="image"
+        (change)="onImageChange($event)"
+        class="form-control"
+      />
+      <img *ngIf="anuncio.urlImage" [src]="anuncio.urlImage" alt="Vista previa" width="100" />
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+      <button type="button" class="btn btn-secondary" (click)="limpiarFormulario()">Limpiar</button>
+    </div>
+  </form>
+
+  <hr />
+
+  <!-- Tabla de anuncios -->
+  <h2>Lista de Anuncios</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>SKU</th>
+        <th>Especificaciones</th>
+        <th>Imagen</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let anuncio of anuncios">
+        <td>{{ anuncio.name }}</td>
+        <td>{{ anuncio.price }}</td>
+        <td>{{ anuncio.sku }}</td>
+        <td>{{ anuncio.specs }}</td>
+        <td>
+          <img *ngIf="anuncio.urlImage" [src]="anuncio.urlImage" alt="Imagen" width="50" />
+        </td>
+        <td>
+          <button class="btn btn-warning btn-sm" (click)="modificar(anuncio)">Modificar</button>
+          <button class="btn btn-danger btn-sm" (click)="eliminar(anuncio)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

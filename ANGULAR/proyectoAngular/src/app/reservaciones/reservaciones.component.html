@@ -1,28 +1,54 @@
 <div class="container">
-    <h1>Consulta Reservaciones:</h1>
-    <hr>
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Pasajeros</th>
-            <th scope="col">Observaciones</th>
-            <th scope="col">Correo</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Viaje</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let reserva of reservacion">
-            <td>{{reserva.idreservacion}}</td>
-            <td>{{reserva.cantidadPasajeros}}</td>
-            <td>{{reserva.observaciones}}</td>
-            <td>{{reserva.correo}}</td>
-            <td>{{reserva.idestado | estados: estado}}</td>
-            <td>{{reserva.idviaje  | viajes: viajes}}</td>
-          </tr>
-        </tbody>
-      </table>
-<div>
-</div>
+  <hr />
+
+  <h2>Facturacion de Ventas</h2>
+
+  <form id="saveSaleForm">
+    <div class="form-group">
+      <label for="invoiceNumber">Invoice Number</label>
+      <input id="invoiceNumber" [(ngModel)]="sale.invoiceNumber" name="invoiceNumber" class="form-control" required />
+    </div>
+    <div class="form-group">
+      <label for="invoiceSeries">Invoice Series</label>
+      <input id="invoiceSeries" [(ngModel)]="sale.invoiceSeries" name="invoiceSeries" class="form-control" required />
+    </div>
+    <div class="form-group">
+      <label for="mailingAddress">Mailing Address</label>
+      <input id="mailingAddress" [(ngModel)]="sale.mailingAddress" name="mailingAddress" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="saleDate">Sale Date</label>
+      <input type="date" id="saleDate" [(ngModel)]="sale.saleDate" name="saleDate" class="form-control" required />
+    </div>
+    <div class="form-group">
+      <label for="saleNumber">Sale Number</label>
+      <input id="saleNumber" [(ngModel)]="sale.saleNumber" name="saleNumber" type="number" class="form-control" />
+    </div>
+    <button type="button" (click)="saveSale()" class="btn btn-primary">Guardar</button>
+    <button type="button" (click)="clearSaleForm()" class="btn btn-secondary">Limpiar</button>
+  </form>
+
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th>Invoice Number</th>
+        <th>Invoice Series</th>
+        <th>Sale Date</th>
+        <th>Sale Number</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sale of sales">
+        <td>{{ sale.invoiceNumber }}</td>
+        <td>{{ sale.invoiceSeries }}</td>
+        <td>{{ sale.saleDate }}</td>
+        <td>{{ sale.saleNumber }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" (click)="updateSale(sale)">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteSale(sale)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

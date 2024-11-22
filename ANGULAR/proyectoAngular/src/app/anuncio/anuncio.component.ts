@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router'; // Importar Router
 
 @Component({
   selector: 'app-anuncio',
@@ -11,7 +12,8 @@ export class AnuncioComponent {
   anuncios: any = {};
   anuncio: any = {};
 
-  constructor(private http: HttpClient) {
+
+  constructor(private http: HttpClient, private router: Router) { // Inyectar Router
     this.buscarAnuncio();
   }
 
@@ -23,6 +25,10 @@ export class AnuncioComponent {
 
   servicioBuscarAnuncio(): Observable<any> {
     return this.http.get("http://localhost:8080/product");
+  }
+
+  comprarProducto() {
+    this.router.navigate(['/reservaciones']); // Redirigir a /lugar
   }
 
   guardarLugar() {

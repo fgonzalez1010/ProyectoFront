@@ -1,3 +1,7 @@
+import { TopEmployeesComponent } from './top-employees/top-employees.component';
+import { TopClientsComponent } from './top-clients/top-clients.component';
+import { LowProductComponent } from './low-product/low-product.component';
+import { TopProductComponent } from './top-product/top-product.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -20,9 +24,13 @@ const routes: Routes = [
     {path: 'mi-perfil', component: MiPerfilComponent},
     {path: 'usuarios', component: UsuariosComponent},
     {path: 'reservaciones', component: ReservacionesComponent},
-    {path: 'tipo-anuncio', component: TipoAnuncioComponent}
+    {path: 'tipo-anuncio', component: TipoAnuncioComponent},
+    {path: 'top-employees', component: TopEmployeesComponent},
+    {path: 'top-clients', component: TopClientsComponent},
+    {path: 'low-product', component: LowProductComponent},
+    {path: 'top-product', component: TopProductComponent},
 
-    
+
 ];
 
 @NgModule({

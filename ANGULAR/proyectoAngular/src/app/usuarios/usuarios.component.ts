@@ -23,7 +23,7 @@ export class UsuariosComponent {
   }
 
   servicioBuscarUsuarios():Observable<any>{
-    return this.http.get("http://localhost:8080/usuario/buscar");
+    return this.http.get("http://localhost:8080/client");
   }
 
 }

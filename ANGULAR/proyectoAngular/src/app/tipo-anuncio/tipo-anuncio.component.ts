@@ -3,74 +3,84 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-tipo-anuncio',
+  selector: 'app-tipo-anuncio', // Selector adaptado
   templateUrl: './tipo-anuncio.component.html',
   styleUrls: ['./tipo-anuncio.component.css']
 })
-
 export class TipoAnuncioComponent {
-  tipoAnuncios:any = {};
-  tipoAnuncio:any ={};
+  anuncios: any = {}; // Lista de anuncios
+  anuncio: any = {};  // Anuncio actual para edición o creación
 
-  constructor(private http:HttpClient){
-    this.buscarTipoAnuncio();
+  constructor(private http: HttpClient) {
+    this.buscarAnuncio();
   }
 
-  buscarTipoAnuncio(){
-    this.servicioBuscarTipoAnuncio().subscribe(
-      (us:any) => this.tipoAnuncios = us
-    )
+  // Método para obtener todos los anuncios
+  buscarAnuncio() {
+    this.servicioBuscarAnuncio().subscribe(
+      (us: any) => this.anuncios = us
+    );
   }
 
-  servicioBuscarTipoAnuncio():Observable<any>{
-    return this.http.get("http://localhost:8080/tipo-anuncio/buscar");
+  servicioBuscarAnuncio(): Observable<any> {
+    return this.http.get("http://localhost:8080/product");
   }
 
-  actualizar(lugar:any){
-    this.buscarTipoAnuncio();
-    this.tipoAnuncio = {};
-  }
-
-  guardarTipoAnuncio(){
-    let validarFormulario:any = document.getElementById("guardarTipoAnuncioForm");
-    if(validarFormulario.reportValidity()){
+  // Método para guardar un anuncio
+  guardarLugar() {
+    let validarFormulario: any = document.getElementById("guardarLugarForm");
+    if (validarFormulario.reportValidity()) {
       this.servicioGuardar().subscribe(
-        (u:any)=> this.actualizar(u)
-      )
+        (u: any) => this.actualizar(u)
+      );
     }
   }
 
-  servicioGuardar(){
+  servicioGuardar(): Observable<any> {
     let httpOptions = {
-      headers : new HttpHeaders({
-        'Content-Type':'application/json'
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
       })
-    }
-    return this.http.post<any>
-    ("http://localhost:8080/tipo-anuncio/guardar",this.tipoAnuncio,httpOptions);
+    };
+    return this.http.post<any>("http://localhost:8080/product", this.anuncio, httpOptions);
   }
 
+  // Método para manejar la imagen en formato Base64
   onImageChange(event: any) {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.tipoAnuncio.imagen = reader.result;
+        this.anuncio.urlImage = reader.result;
       };
     }
   }
 
-  modificar(u:any){
-    this.tipoAnuncio = u;
+  // Método para actualizar la lista de anuncios y limpiar el formulario
+  actualizar(lugar: any) {
+    this.buscarAnuncio();
+    this.anuncio = {};
   }
 
-  limpiarFormulario(){
-    this.tipoAnuncio = {};
+  // Método para editar un anuncio existente
+  modificar(u: any) {
+    this.anuncio = u;
   }
 
-  
+  // Método para limpiar el formulario
+  limpiarFormulario() {
+    this.anuncio = {};
+  }
 
+  // Método para eliminar un anuncio
+  eliminar(u: any) {
+    this.servicioEliminarLugar(u).subscribe(
+      (us: any) => this.actualizar(us)
+    );
+  }
 
-
+  servicioEliminarLugar(u: any): Observable<any> {
+    return this.http.delete<any>("http://localhost:8080/product/" + u.productId);
+  }
 }

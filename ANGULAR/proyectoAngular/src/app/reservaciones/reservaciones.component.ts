@@ -8,45 +8,103 @@ import { Observable } from 'rxjs';
   styleUrls: ['./reservaciones.component.css']
 })
 export class ReservacionesComponent {
-  reservacion:any = [];
-  estado:any = [];
-  viajes:any = [];
+  reservacion: any = [];
+  estado: any = [];
+  viajes: any = [];
 
-  constructor(private http:HttpClient){
+  // Variables para la gestión de ventas
+  sales: any[] = [];
+  sale: any = {};
+
+  constructor(private http: HttpClient) {
     this.buscarReservacion();
     this.buscarEstados();
     this.buscarViajes();
+    this.fetchSales(); // Inicializar la lista de ventas
   }
 
-  buscarReservacion(){
-    this.serviciobuscarReservacion().subscribe(
-      (us:any) => this.reservacion = us
-    )
+  // Reservaciones
+  buscarReservacion() {
+    this.servicioBuscarReservacion().subscribe(
+      (us: any) => this.reservacion = us
+    );
   }
 
-  serviciobuscarReservacion():Observable<any>{
+  servicioBuscarReservacion(): Observable<any> {
     return this.http.get("http://localhost:8080/reservacion/buscar");
   }
 
-  //viajes
-  buscarViajes(){
-    this.serviciobuscarViajes().subscribe(
-      (us:any) => this.viajes = us
-    )
+  // Viajes
+  buscarViajes() {
+    this.servicioBuscarViajes().subscribe(
+      (us: any) => this.viajes = us
+    );
   }
 
-  serviciobuscarViajes():Observable<any>{
+  servicioBuscarViajes(): Observable<any> {
     return this.http.get("http://localhost:8080/viaje/buscar");
   }
 
-  //estados
-  buscarEstados(){
+  // Estados
+  buscarEstados() {
     this.servicioBuscarEstados().subscribe(
-      (us:any) => this.estado = us
-    )
+      (us: any) => this.estado = us
+    );
   }
 
-  servicioBuscarEstados():Observable<any>{
+  servicioBuscarEstados(): Observable<any> {
     return this.http.get("http://localhost:8080/estado/buscar");
+  }
+
+  // Ventas
+  fetchSales() {
+    this.getSalesService().subscribe(
+      (data: any) => this.sales = data
+    );
+  }
+
+  getSalesService(): Observable<any> {
+    return this.http.get("http://localhost:8080/sale");
+  }
+
+  saveSale() {
+    let formValid: any = document.getElementById("saveSaleForm");
+    if (formValid.reportValidity()) {
+      this.saveSaleService().subscribe(
+        (data: any) => this.refreshSales(data)
+      );
+    }
+  }
+
+  saveSaleService(): Observable<any> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post<any>("http://localhost:8080/sale", this.sale, httpOptions);
+  }
+
+  updateSale(sale: any) {
+    this.sale = { ...sale };
+  }
+
+  deleteSale(sale: any) {
+    this.deleteSaleService(sale.saleId).subscribe(
+      () => this.fetchSales()
+    );
+  }
+
+  deleteSaleService(id: number): Observable<any> {
+    return this.http.delete<any>(`http://localhost:8080/sale/${id}`);
+  }
+
+  refreshSales(data: any) {
+    this.fetchSales();
+    this.sale = {};
+  }
+
+  clearSaleForm() {
+    this.sale = {};
   }
 }

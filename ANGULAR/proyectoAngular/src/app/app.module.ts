@@ -18,6 +18,11 @@ import { ViajesPipe } from './viajes.pipe';
 import { ReservacionesComponent } from './reservaciones/reservaciones.component';
 import { TipoAnuncioComponent } from './tipo-anuncio/tipo-anuncio.component';
 import { AnuncioPipe } from './anuncio.pipe';
+import { MiComponenteComponent } from './componentes/mi-componente/mi-componente.component';
+import { TopProductComponent } from './top-product/top-product.component';
+import { TopClientsComponent } from './top-clients/top-clients.component';
+import { TopEmployeesComponent } from './top-employees/top-employees.component';
+import { LowProductComponent } from './low-product/low-product.component';
 
 
 @NgModule({
@@ -35,7 +40,12 @@ import { AnuncioPipe } from './anuncio.pipe';
     ViajesPipe,
     ReservacionesComponent,
     TipoAnuncioComponent,
-    AnuncioPipe
+    AnuncioPipe,
+    MiComponenteComponent,
+    TopProductComponent,
+    TopClientsComponent,
+    TopEmployeesComponent,
+    LowProductComponent
   ],
   imports: [
     BrowserModule,
